@@ -33,7 +33,7 @@ const initialState: EmployeeState = {
   ],
 };
 
-export function employeeReducer(
+export default function employeeReducer(
   state = initialState,
   action: EmployeeActions
 ): EmployeeState {
