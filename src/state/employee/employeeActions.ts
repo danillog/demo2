@@ -1,23 +1,49 @@
-// Ação para adicionar um funcionário
-export function addEmployee(employee) {
+import { Employee } from '../../models/Employee';
+
+export const EmployeeActionTypes = {
+  ADD_EMPLOYEE: 'ADD_EMPLOYEE',
+  REMOVE_EMPLOYEE: 'REMOVE_EMPLOYEE',
+  UPDATE_EMPLOYEE: 'UPDATE_EMPLOYEE',
+};
+
+interface AddEmployeeAction {
+  type: typeof EmployeeActionTypes.ADD_EMPLOYEE;
+  payload: Employee;
+}
+
+interface RemoveEmployeeAction {
+  type: typeof EmployeeActionTypes.REMOVE_EMPLOYEE;
+  payload: number; // Assuming payload here is the id of the employee to remove
+}
+
+interface UpdateEmployeeAction {
+  type: typeof EmployeeActionTypes.UPDATE_EMPLOYEE;
+  payload: Employee;
+}
+
+export type EmployeeActions =
+  | AddEmployeeAction
+  | RemoveEmployeeAction
+  | UpdateEmployeeAction;
+
+// Action creators
+export function addEmployee(employee: Employee): AddEmployeeAction {
   return {
-    type: 'ADD_EMPLOYEE',
+    type: EmployeeActionTypes.ADD_EMPLOYEE,
     payload: employee,
   };
 }
 
-// Ação para remover um funcionário
-export function removeEmployee(employeeId) {
+export function removeEmployee(employeeId: number): RemoveEmployeeAction {
   return {
-    type: 'REMOVE_EMPLOYEE',
+    type: EmployeeActionTypes.REMOVE_EMPLOYEE,
     payload: employeeId,
   };
 }
 
-// Ação para atualizar um funcionário
-export function updateEmployee(employee) {
+export function updateEmployee(employee: Employee): UpdateEmployeeAction {
   return {
-    type: 'UPDATE_EMPLOYEE',
+    type: EmployeeActionTypes.UPDATE_EMPLOYEE,
     payload: employee,
   };
 }

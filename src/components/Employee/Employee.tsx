@@ -15,14 +15,16 @@ interface AppState {
       role: string;
       sector: string;
       company: string;
-    }>;
-  };
+    }>
+  }
 }
+
 
 const Employee: React.FC = () => {
   const dispatch = useDispatch();
 
   const employees = useSelector((state: AppState) => state.employee.employees);
+
 
   const [newEmployee, setNewEmployee] = useState({
     name: '',
@@ -86,14 +88,14 @@ const Employee: React.FC = () => {
         </label>
         <button type="submit">Adicionar funcionário</button>
       </form>
-      {employees &&
-        employees.map((employee) => (
-          <EmployeeCard
-            key={employee.id}
-            employee={employee}
-            onDelete={() => dispatch(removeEmployee(employee.id))}
-          />
-        ))}
+      {employees && employees.map((employee) => (
+  <EmployeeCard
+    key={employee.id}
+    employee={employee}
+    onDelete={() => dispatch(removeEmployee(employee.id))}
+  />
+))}
+
     </div>
   );
 };

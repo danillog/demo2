@@ -1,19 +1,53 @@
-import { Action } from 'redux';
+// state/employee/employeeReducer.ts
+
+import { EmployeeActions, EmployeeActionTypes } from './employeeActions';
+
+interface Employee {
+  id: number;
+  name: string;
+  role: string;
+  sector: string;
+  company: string;
+}
 
 interface EmployeeState {
-  // Adicione aqui as propriedades do estado do funcionário
+  employees: Employee[];
 }
 
 const initialState: EmployeeState = {
-  // Inicialize aqui o estado do funcionário
+  employees: [
+    {
+      id: 1,
+      name: 'João',
+      role: 'Engenheiro',
+      sector: 'Desenvolvimento',
+      company: 'ABC Corp',
+    },
+    {
+      id: 2,
+      name: 'Maria',
+      role: 'Gerente',
+      sector: 'Marketing',
+      company: 'XYZ Corp',
+    },
+  ],
 };
 
-function employeeReducer(state = initialState, action: Action): EmployeeState {
+export function employeeReducer(
+  state = initialState,
+  action: EmployeeActions
+): EmployeeState {
   switch (action.type) {
-    // Manipule aqui as ações do funcionário
+    case EmployeeActionTypes.ADD_EMPLOYEE:
+      return { ...state, employees: [...state.employees, action.payload] };
+    case EmployeeActionTypes.REMOVE_EMPLOYEE:
+      return {
+        ...state,
+        employees: state.employees.filter(
+          (employee) => employee.id !== action.payload
+        ),
+      };
     default:
       return state;
   }
 }
-
-export default employeeReducer;

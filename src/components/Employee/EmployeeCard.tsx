@@ -1,6 +1,15 @@
-import React from "react";
+import React from 'react';
 
-const EmployeeCard: React.FC<{ employee: { name: string, role: string, sector: string, company: string, id: string }, onDelete: () => void }> = ({ employee, onDelete }) => {
+const EmployeeCard: React.FC<{
+  employee: {
+    name: string;
+    role: string;
+    sector: string;
+    company: string;
+    id: string;
+  };
+  onDelete: () => void;
+}> = ({ employee, onDelete }) => {
   return (
     <div>
       <h2>{employee.name}</h2>
