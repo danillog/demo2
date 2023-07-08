@@ -4,12 +4,25 @@ import {
   addEmployee,
   removeEmployee,
 } from '../../state/employee/employeeActions';
+import Menu from '../Menu/Menu';
 import EmployeeCard from './EmployeeCard';
+
+interface AppState {
+  employee: {
+    employees: Array<{
+      id: number;
+      name: string;
+      role: string;
+      sector: string;
+      company: string;
+    }>;
+  };
+}
 
 const Employee: React.FC = () => {
   const dispatch = useDispatch();
 
-  const employees = useSelector((state) => state.employee.employees);
+  const employees = useSelector((state: AppState) => state.employee.employees);
 
   const [newEmployee, setNewEmployee] = useState({
     name: '',
@@ -33,6 +46,7 @@ const Employee: React.FC = () => {
 
   return (
     <div>
+      <Menu />
       <form onSubmit={handleSubmit}>
         <label>
           Nome:
@@ -72,13 +86,14 @@ const Employee: React.FC = () => {
         </label>
         <button type="submit">Adicionar funcionário</button>
       </form>
-      {employees.map((employee) => (
-        <EmployeeCard
-          key={employee.id}
-          employee={employee}
-          onDelete={() => dispatch(removeEmployee(employee.id))}
-        />
-      ))}
+      {employees &&
+        employees.map((employee) => (
+          <EmployeeCard
+            key={employee.id}
+            employee={employee}
+            onDelete={() => dispatch(removeEmployee(employee.id))}
+          />
+        ))}
     </div>
   );
 };
