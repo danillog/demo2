@@ -60,3 +60,6 @@
     - modificar acessos dos funcionários
     - visualizar status de todas as empresas
     - Coordenador que linka funciorio a empresa(trabalho)
+- Layout/design
+  - Acessibilidade
+  - Responsividade
